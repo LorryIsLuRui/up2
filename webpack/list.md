@@ -12,9 +12,15 @@ webpack是一个现代JavaScript应用程序的静态模块打包器，当webpac
 ### 入口
     指示webpack应该以哪个模块作为构建其内部依赖关系图的开始，进入起点后，会找哪些模块和库是入口起点的依赖（直接、间接）
     每个依赖项随即被处理，最后输出到bundles文件夹中。可以配置一个或多个入口起点，默认值是./src。
+    [默认值./src, 即在配置文件不设置entry，执行webpack会去寻找src下的文件]
+    [如果配置文件没有设置src属性，也没有src文件 会报错]
+    ```
+        ERROR in Entry module not found: Error: Can't resolve './src' in '/Users/lorry/workspace/up2/webpack'
+    ```
 ### output
-    告诉webpack在哪里输出他所创建的bundles，以及如何命名这些文件，默认./dist，基本上整个应用程序结构都会被编译到你指定的输出路径的
-    文件夹中
+    告诉webpack在哪里输出他所创建的bundles，以及如何命名这些文件，默认./dist，基本上整个应用程序结构都会被编译到你指定的输出路径的文件夹中
+    [默认路径参考入口，配置文件不设置output属性，执行webpack会自动创建./dist并将打包后的文件输入其中默认 ./dist/main.js]
+
     ```
         const path = require('path');
         module.exports = {
@@ -25,8 +31,9 @@ webpack是一个现代JavaScript应用程序的静态模块打包器，当webpac
             }
         };
     ```
+
 ### loader 
-    让webpack能够处理非js文件（webpack自身只理解js），loader可以将所有类型的文件转换为webpack能够处理的有效模块，然后利用webpack的打包能力，对他们进行处理。
+    让webpack能够处理非js文件（webpack自身只理解js），loader可以将所有类型的文件转换为webpack能够处理的有效模块，然后利用webpack的打包能力，对他们进行处理。在import或“加载”模块时预处理文件，因此loader类似于其他构件工具中的“任务（task）”，并提供了处理前端构建步骤的强大方法
 
     本质上webpack loader将所有类型的文件转换成应用程序的依赖图（和最重的bundle）可以直接引用的模块
     ```
@@ -69,3 +76,6 @@ webpack是一个现代JavaScript应用程序的静态模块打包器，当webpac
         module.exports = config;
         // 在一个配置文件中因为不同目的而多次使用同一个插件，这时需要通过使用 new 操作符来创建它的一个实例。
     ```
+### tips
+    - 指定配置文件打包
+        webpack --config webpack_1.config.js
