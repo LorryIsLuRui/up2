@@ -11,7 +11,6 @@
 
 
    如果传入一个字符串或字符串数组，chunk 会被命名为 main。如果传入一个对象，则每个键(key)会是 chunk 的名称，该值描述了 chunk 的入口起点。
-   entry是数组形式的话，会将所有entry打包到一个bundle.js文件里
    ```
     entry: {
             index: './webpack_2/index.js',

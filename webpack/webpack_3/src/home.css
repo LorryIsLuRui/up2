@@ -1,5 +1,8 @@
-@import url(./center.css);
 body{
     background-color: aquamarine;
     color: blueviolet;
+    background: url('./assets/a.png?a') no-repeat center center;
+}
+h1{
+    background: url('./assets/b.jpeg') no-repeat center center;
 }

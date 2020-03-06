@@ -78,4 +78,4 @@ webpack是一个现代JavaScript应用程序的静态模块打包器，当webpac
     ```
 ### tips
     - 指定配置文件打包
-        webpack --config webpack_1.config.js
+        webpack --config=config/webpack_3.config.js
