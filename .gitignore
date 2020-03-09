@@ -1,2 +1,4 @@
-./webpack/node_modules/
-dist/*
+webpack/node_modules/
+webpack/webpack_1/dist/
+webpack/webpack_2/dist/
+webpack/webpack_3/dist/
