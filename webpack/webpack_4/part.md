@@ -28,3 +28,5 @@ css摘出来怎么引入？使用HtmlWebpackPlugin？
 https://segmentfault.com/q/1010000007566185
 html-loader
 
+乱码问题 可能是file-loader/url-loader导致的 设置esModule: false,
+

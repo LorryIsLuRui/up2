@@ -21,6 +21,9 @@ module.exports = {
                 test: /\.html$/,
                 use: {
                     loader: 'html-loader',
+                    options: {
+                        attrs:["img:src"]
+                    }
                 }
             },
             {
@@ -65,7 +68,8 @@ module.exports = {
                     options: {
                         name: '[name].[ext]', // 可提供function
                         outputPath: 'assets/',
-                        limit: 39
+                        limit: 39,
+                        esModule: false,
                     }
                 }]
             },
