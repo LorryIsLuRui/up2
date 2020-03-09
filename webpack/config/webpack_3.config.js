@@ -27,17 +27,12 @@ module.exports = {
             },
             {
                 test: /\.(png|jpe?g)$/,
-                oneOf: [{
-                    resourceQuery: /a/,
-                    use: 'url-loader',
-                },{
-                    use: [{
-                        loader: 'file-loader',
-                        options: {
-                            name: '[name].[ext]', // 可提供function
-                            outputPath: 'assets/',
-                        }
-                    }]
+                use: [{
+                    loader: 'url-loader',
+                    options: {
+                        name: '[name].[ext]', // 可提供function
+                        outputPath: 'assets/',
+                    }
                 }]
             }
         ],
