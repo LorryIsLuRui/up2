@@ -4,7 +4,7 @@ const path = require('path');
 const absoluteRoute = path.resolve(__dirname, '../webpack_1');
 
 module.exports = {
-    entry: './webpack_1/index.js',
+    entry: './webpack_1/src/index.js',
     output: {
         path: `${absoluteRoute}/dist`,
         filename: 'bundle.js',

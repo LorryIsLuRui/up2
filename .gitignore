@@ -1,4 +1,5 @@
 webpack/node_modules/
-webpack/webpack_1/dist/
-webpack/webpack_2/dist/
-webpack/webpack_3/dist/
+dist/
+# webpack/webpack_1/dist/
+# webpack/webpack_2/dist/
+# webpack/webpack_3/dist/
