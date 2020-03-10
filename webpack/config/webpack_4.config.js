@@ -1,14 +1,11 @@
 const path = require('path');
 const absoluteRoute = path.resolve(__dirname, '../webpack_4');
-const extractTexPlugin = require('extract-text-webpack-plugin');
-const extractCss = new extractTexPlugin('[name].css');
-const extractScss = new extractTexPlugin('stylesheets/[name].css');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
     context: absoluteRoute,
     entry: {
-        index: `${absoluteRoute}/src/index.js`,
+        index: [`${absoluteRoute}/src/index.js`, `${absoluteRoute}/src/util.js`],
         home: `${absoluteRoute}/src/home.js`,
     },
     output: {

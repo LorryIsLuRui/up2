@@ -29,4 +29,5 @@ https://segmentfault.com/q/1010000007566185
 html-loader
 
 乱码问题 可能是file-loader/url-loader导致的 设置esModule: false,
-
+## CommonsChunkPlugin
+将公共模板拆出来，最终合成的文件能够在最开始的时候加载一次，便存到缓存中供后续使用。这个会带来速度上的提升，因为浏览器会迅速将公共代码从缓存中取出来而不是每访问一个新页面再去加载一个更大的文件。 [在webpack v4以上被移除，可用SplitChunksPlugin]

@@ -1,3 +1,10 @@
+## tips
+    - 指定配置文件打包
+        在终端webpack目录下运行 n=4 npm run start；n=4表示运行webpack_4
+## 工具版本
+webpack v4.42.0
+node 10.16.2
+
 ## 文档
 https://www.webpackjs.com/concepts/
 
@@ -53,7 +60,7 @@ webpack是一个现代JavaScript应用程序的静态模块打包器，当webpac
         module.exports = config;
 
         /** 
-            “嘿，webpack 编译器，当你碰到「在 require()/import 语句中被解析为 '.txt' 的路径」时，在你对它打包之前，先使用       raw-loader 转换一下。”
+            “嘿，webpack 编译器，当你碰到「在 require()/import 语句中被解析为 '.txt' 的路径」时，在你对它打包之前，先使用raw-loader 转换一下。”
         */
     ```
 ### 插件
@@ -76,9 +83,40 @@ webpack是一个现代JavaScript应用程序的静态模块打包器，当webpac
         module.exports = config;
         // 在一个配置文件中因为不同目的而多次使用同一个插件，这时需要通过使用 new 操作符来创建它的一个实例。
     ```
-### tips
-    - 指定配置文件打包
-        在终端webpack目录下运行 n=4 npm run start；n=4表示运行webpack_4
+## 模块热替换（hot module replacement）
+    此功能会在应用程序运行过程中替换、添加或删除模块，而无需加载整个页面。HMR 不适用于生产环境，这意味着它应当只在开发环境使用。
+    主要是通过以下几种方式来显著加快开发速度：
+    - 保留在完全重新加载页面时丢失的应用程序状态。
+    - 只更新变更内容，以节省宝贵的开发时间。
+    - 调整样式更加快速，几乎相当于在浏览器中调试器中更改样式
 
-webpack v4.42.0
-node 10.16.2
+### 如何运行的
+#### 在应用程序中
+    如何做到在应用程序中置换模块
+    1. 应用程序代码要求HMR runtime 检查更新
+    2. HRM runtime（异步）下载更新，然后通知应用程序代码
+    3. 应用程序代码要求HMR runtime应用更新
+    4. HMR runtime（同步）应用更新
+    你可以设置 HMR，以使此进程自动触发更新，或者你可以选择要求在用户交互时进行更新。
+#### 在编译器中
+    除了普通资源，编译器需要发出“update”，以允许更新之前的版本到新的版本。“update”由两部分组成
+    1. 更新后的manifest（JSON）
+    2. 一个或多个更新后的chunk（JavaScript）
+
+    manifest包括新的编译hash和所有的待更新chunk目录。每个更新chunk都含有对应于此chunk的全部更新模块（或一个flag用于表明此模块要被移除）的代码
+
+    编译器确保模块id和chunk id在这些构建之间保持一致。通常将这些id存储在内存中（例如，使用webpack-dev-server时），但是也可能将他们存储在一个json文件中。
+#### 在模块中
+    HMR 是可选功能，只会影响包含 HMR 代码的模块。举个例子，通过 style-loader 为 style 样式追加补丁。为了运行追加补丁，style-loader 实现了 HMR 接口；当它通过 HMR 接收到更新，它会使用新的样式替换旧的样式。
+
+    类似的，当在一个模块中实现了 HMR 接口，你可以描述出当模块被更新后发生了什么。然而在多数情况下，不需要强制在每个模块中写入 HMR 代码。如果一个模块没有 HMR 处理函数，更新就会冒泡(bubble up)。这意味着一个简单的处理函数能够对整个模块树(complete module tree)进行更新。如果在这个模块树中，一个单独的模块被更新，那么整组依赖模块都会被重新加载。
+#### 在HMR Runtime中（看不懂）
+    https://www.webpackjs.com/concepts/hot-module-replacement/#%E5%9C%A8-hmr-runtime-%E4%B8%AD
+
+### 入门
+在开发过程中，可以将 HMR 作为 LiveReload 的替代。webpack-dev-server 支持 hot 模式，在试图重新加载整个页面之前，热模式会尝试使用 HMR 来更新。更多细节请查看模块热更新指南。
+
+与许多其他功能一样，webpack 的强大之处在于它的可定制化。取决于特定项目需求，会有许多种配置 HMR 的方式。然而，对于多数实现来说，webpack-dev-server 能够配合良好，可以让你快速入门 HMR
+### 使用
+    https://www.webpackjs.com/guides/hot-module-replacement/
+
