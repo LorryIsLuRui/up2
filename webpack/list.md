@@ -78,4 +78,7 @@ webpack是一个现代JavaScript应用程序的静态模块打包器，当webpac
     ```
 ### tips
     - 指定配置文件打包
-        webpack --config=config/webpack_3.config.js
+        在终端webpack目录下运行 n=4 npm run start；n=4表示运行webpack_4
+
+webpack v4.42.0
+node 10.16.2
