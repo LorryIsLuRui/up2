@@ -2,6 +2,7 @@ const path = require('path');
 const mini = require('mini-css-extract-plugin');
 const htmlPlu = require('html-webpack-plugin');
 const webpack = require('webpack');
+const cleanPlu = require('clean-webpack-plugin').CleanWebpackPlugin; 
 const absoluteRoute = path.resolve(__dirname, '../webpack_5');
 module.exports = {
     entry: {
@@ -45,17 +46,24 @@ module.exports = {
             }
         ]
     },
+    devtool: 'inline-source-map',
     devServer: {
         contentBase: `${absoluteRoute}/dist`,
         compress: true,
         port: 9000,
-        progress: true,
+        hot: true,
     },
-    plugins: [new mini({
-        filename: 'css/[name].css'
-    }), new htmlPlu({
-        title: 'webpack_5',
-        template: `${absoluteRoute}/src/index.html`,
-        inject: true,
-    })]
+    plugins: [
+        new mini({
+            filename: 'css/[name].css'
+        }),
+        new htmlPlu({
+            title: 'webpack_5',
+            template: `${absoluteRoute}/src/index.html`,
+            inject: true,
+        }),
+        new cleanPlu({path: `${absoluteRoute}/dist`}),
+        new webpack.NamedChunksPlugin(),
+        new webpack.HotModuleReplacementPlugin()
+    ]
 }

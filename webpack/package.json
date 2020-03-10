@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "rm -rf ./webpack_${n}/dist && webpack --config=config/webpack_${n}.config.js",
-    "hmr": "webpack-dev-server --config config/webpack_5.config.js --hot"
+    "clean-start": "webpack --config=config/webpack_${n}.config.js",
+    "wds-com": "webpack-dev-server --config config/webpack_5.config.js --open",
+    "watch": "webpack --watch --config=config/webpack_${n}.config.js"
   },
   "author": "lorry",
   "license": "ISC",
@@ -21,6 +23,7 @@
     "webpack": "^4.42.0"
   },
   "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
