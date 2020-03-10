@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "rm -rf ./webpack_${n}/dist && webpack --config=config/webpack_${n}.config.js"
+    "start": "rm -rf ./webpack_${n}/dist && webpack --config=config/webpack_${n}.config.js",
+    "hmr": "webpack-dev-server --config config/webpack_5.config.js --hot"
   },
   "author": "lorry",
   "license": "ISC",
@@ -27,6 +28,7 @@
     "mini-css-extract-plugin": "^0.9.0",
     "style-loader": "^1.1.3",
     "typescript": "^3.8.3",
-    "webpack-cli": "^3.3.11"
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
   }
 }
