@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@16.8.0/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@16.8.0/umd/react-dom.development.js"
+    ></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <style>
+      .line {
+        border: 5px solid teal;
+        width: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+      // const { useEffect } = React;
+      //         let state = [];
+      //         let setters = [];
+      //         let cursor = 0;
+
+      //         function createSetter(cursor) {
+      //             return function setterWithCursor(newVal) {
+      //                 state[cursor] = newVal;
+      //             };
+      //         }
+
+      //         function useState(initVal) {
+      //             state.push(initVal);
+      //             setters.push(createSetter(cursor));
+
+      //             const setter = setters[cursor];
+      //             const value = state[cursor];
+
+      //             cursor++;
+      //             return [value, setter];
+      //         }
+      //         function Lorry({init}) {
+      //             const [count, setCount] = useState(init);
+      //             const [count1, setCount1] = useState(init);
+      //             setCount(1)
+      //             setCount(2)
+      //             setCount1(3)
+      //             setCount(3)
+      //             setCount1(30)
+      //             console.log(state);  //[3,30]
+
+      //             return (
+      //                 <div>
+      //                     useState实现
+      //                 </div>
+      //             );
+      //         }
+
+      const { useState, useEffect, useReducer } = React;
+      function reducer(state, action) {
+        switch (action.type) {
+          case "reset":
+            return { count: action.payload };
+            break;
+          case "increase":
+            return { count: state.count + 1 };
+            break;
+
+          default:
+            return state;
+            break;
+        }
+      }
+      function TestReducer({ init }) {
+          console.log(init)
+        const [state, dispatch] = useReducer(reducer, init,{type: 'reset', payload: init},);
+        return (
+          <div>
+            <h1>testReducer</h1>
+            <button onClick={()=>{
+                dispatch({ type: "increase" })
+            }}>
+              {state.count}+
+            </button>
+            <button onClick={()=>{
+                dispatch({ type: "reset" ,payload:init})
+            }}>
+              reset
+            </button>
+          </div>
+        );
+      }
+      ReactDOM.render(
+        <TestReducer init={{ count: 0 }} />,
+        document.getElementById("app")
+      );
+      //   function useMyHook(count) {
+      //     const [can, setCan] = useState(false);
+      //     useEffect(() => {
+      //       setCan(count > 3);
+      //       return () => {
+      //         console.log("useMyHook - clean - up");
+      //       };
+      //     });
+      //     return can;
+      //   }
+      //   function Lorry({ init }) {
+      //     const [count, setCount] = useState(init);
+      //     const can = useMyHook(count);
+      //     const can1 = useMyHook(count1);
+      //     let count1, setCount1;
+      //     let bool = true;
+      //     if (bool) {
+      //       [count1, setCount1] = useState(init);
+      //     }
+      //     console.log("count1--", count1);
+      //     useEffect(() => {
+      //       document.title = `You clicked ${count} times`;
+      //       console.log("object");
+      //       return function() {
+      //         bool = false;
+      //         console.log("clean up count", bool);
+      //       };
+      //     });
+      //     return (
+      //       <div>
+      //         <p>You clicked {count} times</p>
+      //         <button onClick={() => setCount(count - 1)}>count -</button>
+      //         <button onClick={() => setCount(count => count + 1)}>
+      //           count +
+      //         </button>
+      //         <p>{can + "- can"}</p>
+      //         <p className="line"></p>
+      //         <p>You clicked {count1} times--1</p>
+      //         <button onClick={() => setCount1(count1 + 1)}>count1 +</button>
+      //         <p>{can1 + "- can1"}</p>
+      //         <p>{false}</p>
+      //         <p>{true}</p>
+      //       </div>
+      //     );
+      //   }
+
+      //   ReactDOM.render(<Lorry init={0} />, document.getElementById("app"));
+    </script>
+  </body>
+</html>

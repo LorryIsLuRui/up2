@@ -1,0 +1,41 @@
+Arguments: 
+  /Users/lorry/.nvm/versions/node/v10.16.0/bin/node /Users/lorry/.nvm/versions/node/v10.16.0/bin/yarn add @babel/core @babel/plugin-proposal-decorators @babel/plugin-proposal-class-properties
+
+PATH: 
+  /Users/lorry/.nvm/versions/node/v10.16.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+Yarn version: 
+  1.17.3
+
+Node version: 
+  10.16.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: https://registry.npmjs.org/nodemon: ESOCKETTIMEDOUT
+      at ClientRequest.<anonymous> (/Users/lorry/.nvm/versions/node/v10.16.0/lib/node_modules/yarn/lib/cli.js:141091:19)
+      at Object.onceWrapper (events.js:286:20)
+      at ClientRequest.emit (events.js:198:13)
+      at TLSSocket.emitRequestTimeout (_http_client.js:662:40)
+      at Object.onceWrapper (events.js:286:20)
+      at TLSSocket.emit (events.js:198:13)
+      at TLSSocket.Socket._onTimeout (net.js:442:8)
+      at ontimeout (timers.js:436:11)
+      at tryOnTimeout (timers.js:300:5)
+      at listOnTimeout (timers.js:263:5)
+
+npm manifest: 
+  {
+    "dependencies": {},
+    "devDependencies": {
+      "nodemon": "^2.0.3"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

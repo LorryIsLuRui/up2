@@ -25,12 +25,15 @@ const use = (fn) => {
 const m1 =  (ctx, next) => {
     console.log('m1 enter');
     ctx.req.user.name = 'lorry';
-    setTimeout(async () => {
-        console.log('timeout 1'); 
-        await next();
-        console.log('m1 out');
-        console.log('ctx ===> ', ctx);
-    }, 1000);
+    Promise.resolve().then(function() {
+        console.log('Promise')
+    })
+    await next();
+    // setTimeout(async () => {
+    //     console.log('timeout 1'); 
+    //     console.log('m1 out');
+    //     console.log('ctx ===> ', ctx);
+    // }, 1000);
 };
 const m2 = async (ctx, next) => {
     console.log('m2 enter');
