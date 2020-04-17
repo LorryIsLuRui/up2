@@ -1,5 +1,6 @@
 node_modules/
 dist/
+seajs-3.0.0
 # webpack/webpack_1/dist/
 # webpack/webpack_2/dist/
 # webpack/webpack_3/dist/
