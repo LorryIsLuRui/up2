@@ -1,19 +1,30 @@
 const { test, many, mixin, single, fnSingleDeco, fnComplexDeco, readonly } = require('./decorator');
 
 @test('i am Person class', 'living')
-@many
-@single
+// @many
+// @single
 class Person {
-    @fnSingleDeco
+    // @fnSingleDeco
     @fnComplexDeco(1)
     @fnComplexDeco(2)
     say(){
         console.log('say fn')
         return 'say fn str'
     };
-    @readonly
+    // @readonly
     lorry = true;
+    change(){
+        this.lorry=false;
+    }
 }
+// 如果同一个方法有多个装饰器，会像剥洋葱一样，先从外到内进入，然后由内向外执行。
+    // say两个 先输出outter1 outter2 inner2 inner1
+// const p = new Person();
+// console.log('p.say() ===> ', p.say()); 
+// p.change();
+// console.log(p.lorry); // 报错 因为@readonly
+// console.log(Person.static)
+// console.log(new Person().living)
 // 多个装饰器，就近原则执行 single -> many -> test 
 // 类的方法装饰器同
 // 装饰器只能用于类和类的方法，不能用于函数，因为存在函数提升。可以采用高阶函数的形式直接执行。

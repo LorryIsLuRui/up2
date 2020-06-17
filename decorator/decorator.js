@@ -1,6 +1,10 @@
 
 function test(p1, p2){
+    console.log(arguments)
+    console.log('p1 ===> ', p1);
+    console.log('p2 ===> ', p2);
     return function(app){
+        console.log('app ===> ', app);// Person{}
         app.static = p1;
         app.prototype.living = p2;
     }
@@ -29,6 +33,8 @@ function mixin(p){
   * 装饰器（readonly）会修改属性的描述对象（descriptor），然后被修改的描述对象再用来定义属性。
  */
 function fnSingleDeco(target, name, desc){
+    console.log('target ===> ', target, 'name ===> ', name, 'desc ===> ', desc);
+
     const old = desc.value;
     desc.value = function(){
         const arr = Array.from(arguments);
@@ -40,13 +46,20 @@ function fnSingleDeco(target, name, desc){
     return desc;
 }
 function fnComplexDeco(para){
-    console.log('outter => ', para)
+    console.log('outter => ', para); 
     return (target, name, desc) => {
         console.log('inner => ', para);
         return desc
     }
 }
+/**
+ * 
+ * @param {Object} Person {} 
+ * @param {string} name 属性名
+ * @param {Object} desc 属性描述符对象
+ */
 function readonly(target, name, desc){
+    console.log('target ===> ', target, 'name ===> ', name, 'desc ===> ', desc);
     desc.writable = false;
     return desc
 }

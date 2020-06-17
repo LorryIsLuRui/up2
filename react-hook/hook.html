@@ -27,79 +27,78 @@
 
     <script type="text/babel">
       // const { useEffect } = React;
-      //         let state = [];
-      //         let setters = [];
-      //         let cursor = 0;
+      // START 实现一个useState
+      /*        let state = [];
+              let setters = [];
+              let cursor = 0;
 
-      //         function createSetter(cursor) {
-      //             return function setterWithCursor(newVal) {
-      //                 state[cursor] = newVal;
-      //             };
-      //         }
+              function createSetter(cursor) {
+                  return function setterWithCursor(newVal) {
+                      state[cursor] = newVal;
+                  };
+              }
 
-      //         function useState(initVal) {
-      //             state.push(initVal);
-      //             setters.push(createSetter(cursor));
+              function useState(initVal) {
+                  state.push(initVal);
+                  setters.push(createSetter(cursor));
 
-      //             const setter = setters[cursor];
-      //             const value = state[cursor];
+                  const setter = setters[cursor];
+                  const value = state[cursor];
 
-      //             cursor++;
-      //             return [value, setter];
-      //         }
-      //         function Lorry({init}) {
-      //             const [count, setCount] = useState(init);
-      //             const [count1, setCount1] = useState(init);
-      //             setCount(1)
-      //             setCount(2)
-      //             setCount1(3)
-      //             setCount(3)
-      //             setCount1(30)
-      //             console.log(state);  //[3,30]
+                  cursor++;
+                  return [value, setter];
+              }
+              function Lorry({init}) {
+                  const [count, setCount] = useState(init);
+                  const [count1, setCount1] = useState(init);
+                  setCount(1)
+                  setCount(2)
+                  setCount1(3)
+                  setCount(3)
+                  setCount1(30)
+                  console.log(state);  //[3,30]
 
-      //             return (
-      //                 <div>
-      //                     useState实现
-      //                 </div>
-      //             );
-      //         }
+                  return (
+                      <div>
+                          useState实现
+                      </div>
+                  );
+              } */
+      //   end
 
       const { useState, useEffect, useReducer } = React;
-      function reducer(state, action) {
-        switch (action.type) {
-          case "reset":
-            return { count: action.payload };
-            break;
-          case "increase":
-            return { count: state.count + 1 };
-            break;
+      function init(initialCount) {
+  return {count: initialCount};
+}
 
-          default:
-            return state;
-            break;
-        }
-      }
-      function TestReducer({ init }) {
-          console.log(init)
-        const [state, dispatch] = useReducer(reducer, init,{type: 'reset', payload: init},);
-        return (
-          <div>
-            <h1>testReducer</h1>
-            <button onClick={()=>{
-                dispatch({ type: "increase" })
-            }}>
-              {state.count}+
-            </button>
-            <button onClick={()=>{
-                dispatch({ type: "reset" ,payload:init})
-            }}>
-              reset
-            </button>
-          </div>
-        );
-      }
+function reducer(state, action) {
+  switch (action.type) {
+    case 'increment':
+      return {count: state.count + 1};
+    case 'decrement':
+      return {count: state.count - 1};
+    case 'reset':
+      return init(action.payload);
+    default:
+      throw new Error();
+  }
+}
+
+function Counter({initialCount}) {
+  const [state, dispatch] = useReducer(reducer, initialCount);
+  return (
+    <div>
+      Count: {state.count}
+      <button
+        onClick={() => dispatch({type: 'reset'})}>
+        Reset
+      </button>
+    </div>
+  );
+}
+
       ReactDOM.render(
-        <TestReducer init={{ count: 0 }} />,
+        <Counter initialCount={{ count: 0 }} />,
         document.getElementById("app")
       );
       //   function useMyHook(count) {
@@ -147,8 +146,30 @@
       //       </div>
       //     );
       //   }
+function Test(){
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    console.log('use effect');
+    return function(){
+      console.log('leave');
+    }
+  })
+  function click() {
+    setCount(count+1);
+  }
+  return <button onClick={this.click.bind(this)}></button>
+}
+function App() {
+  return (
+    <div className="App">
+      <Test />
+      <h1>Hello CodeSandbox</h1>
+    </div>
+  );
+}
 
-      //   ReactDOM.render(<Lorry init={0} />, document.getElementById("app"));
+        // ReactDOM.render(<App />, document.getElementById("app"));
+        ReactDOM.render(<Lorry init={0} />, document.getElementById("app"));
     </script>
   </body>
 </html>

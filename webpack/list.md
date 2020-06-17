@@ -42,19 +42,19 @@ webpack是一个现代JavaScript应用程序的静态模块打包器，当webpac
 ### loader 
     让webpack能够处理非js文件（webpack自身只理解js），loader可以将所有类型的文件转换为webpack能够处理的有效模块，然后利用webpack的打包能力，对他们进行处理。在import或“加载”模块时预处理文件，因此loader类似于其他构件工具中的“任务（task）”，并提供了处理前端构建步骤的强大方法
 
-    本质上webpack loader将所有类型的文件转换成应用程序的依赖图（和最重的bundle）可以直接引用的模块
+    本质上webpack loader将所有类型的文件转换成应用程序的依赖图（和最终的bundle）可以直接引用的模块
     ```
        const path = require('path');
 
         const config = {
-        output: {
-            filename: 'my-first-webpack.bundle.js'
-        },
-        module: {
-            rules: [
-            { test: /\.txt$/, use: 'raw-loader' }
-            ]
-        }
+            output: {
+                filename: 'my-first-webpack.bundle.js'
+            },
+            module: {
+                rules: [
+                    { test: /\.txt$/, use: 'raw-loader' }
+                ]
+            }
         };
 
         module.exports = config;

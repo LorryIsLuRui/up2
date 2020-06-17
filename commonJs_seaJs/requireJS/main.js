@@ -32,9 +32,9 @@ require(['A', 'B', 'unAmd', 'comJsM'], (a, b, c, d) => {
     console.log('a ===> ', a, 'b ===> ', b);
     console.log('c ===> ', c);
     console.log('d ===> ', d);
-    a.fn1(1);
-    b.fn2(2);
+    // a.fn1(1);
+    // b.fn2(2);
     // d.fn(); // exports.fn暴露 调用方式
-    d() // module.exports = fn暴露调用方式
+    // d() // module.exports = fn暴露调用方式
 })
 console.log('sync')
