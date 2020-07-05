@@ -4,8 +4,8 @@ const htmlPlu = require('html-webpack-plugin');
 const webpack = require('webpack');
 const cleanPlu = require('clean-webpack-plugin').CleanWebpackPlugin; 
 const absoluteRoute = path.resolve(__dirname, '../webpack_5');
-const myPlu = require('../createMy/myPlu');
-const myLo = require('../createMy/myLoader');
+const myPlu = require('../myPlus/myPlu');
+
 module.exports = {
     entry: {
         index: `${absoluteRoute}/src/index.js`,
@@ -31,9 +31,9 @@ module.exports = {
                 }, {
                     loader: 'css-loader'
                 }, {
-                    loader: 'sass-loader'
-                }, {
                     loader: 'myLo'
+                }, {
+                    loader: 'sass-loader'
                 }]
             },
             {
@@ -78,6 +78,9 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin()
     ],
     resolveLoader: {
-        modules: ['node_modules','../createMy/']
+        modules: ['node_modules'],
+        alias: {
+            'myLo': path.resolve(__dirname, '../myLoaders/myLoader.js')
+        }
     }
 }

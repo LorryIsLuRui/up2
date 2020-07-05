@@ -1,5 +1,6 @@
+$color:'red';
 body{
     background-color: skyblue;
-    color: whitesmoke;
+    color: $color;
     font-size: 25px;
 }

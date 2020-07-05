@@ -1,4 +1,3 @@
-const htmlPlu = require('html-webpack-plugin');
 
 // function test(options){
 //     console.log('options ===> ', options);

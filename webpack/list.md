@@ -120,3 +120,4 @@ webpack是一个现代JavaScript应用程序的静态模块打包器，当webpac
 ### 使用
     https://www.webpackjs.com/guides/hot-module-replacement/
 
+webpack5 里面有写了一个简单的plugin 和loader
