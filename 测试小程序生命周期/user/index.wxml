@@ -1,0 +1,11 @@
+<view class="" hover-class="none" hover-stop-propagation="false">
+    <view class="" hover-class="none" hover-stop-propagation="false">
+        user
+    </view>
+    <button class="btn" type="primary" loading="{{loading}}" disabled="{{disabled}}" bindtap="back">
+        使用navigatorBack返回上一级页面
+    </button>
+    <button class="btn" type="warn" loading="{{loading}}" disabled="{{disabled}}" bindtap="navi">
+        使用navigator返回index
+    </button>
+</view>

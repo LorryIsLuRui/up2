@@ -1,0 +1,4 @@
+<view class="" hover-class="none" hover-stop-propagation="false">
+    login
+</view>
+<button bind:tap="navi">navi到index页面</button>

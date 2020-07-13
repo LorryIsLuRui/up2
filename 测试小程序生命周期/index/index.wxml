@@ -1,0 +1,12 @@
+<view>
+    <view wx:for="{{list}}" wx:key="item">
+        <item val="{{item}}"></item>
+    </view>
+    <item2 para="item2 component"></item2>
+    <button catch:tap="add">增加data值</button>
+    <button catch:tap="del">删除data值</button>
+    <button catch:tap="navi" type="primary">navi跳转</button>
+    <button catch:tap="redirect" type="warn">redirect跳转</button>
+    <button catch:tap="reLaunch" type="default">reLaunch跳转</button>
+    <button catch:tap="naviLogin" type="primary">navi跳转login</button>
+</view>
